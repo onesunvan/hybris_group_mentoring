@@ -23,9 +23,15 @@
 			<value code="Telco" />
 		</enumtype>
 	</enumtypes>
-	
+
 	<relations>
-	
+
+		<relation code="Customer2Organisation" localized="false" generate="true" autocreate="true">
+			<deployment table="customerorganisationrel" typecode="20101"/>
+			<sourceElement type="Customer" qualifier="customers" cardinality="many" />
+			<targetElement type="Organisation" qualifier="organisations" cardinality="many"/>
+		</relation>
+
 		<relation code="ProductAccessoryComponent2ClassAttributeAssignRel"
 			generate="true" localized="false" autocreate="true">
 			<description>This relation links productref and class component with one or more classification attributes  for this component.</description>
@@ -40,7 +46,7 @@
 					optional="true" />
 			</targetElement>
 		</relation>
-			
+
 		<relation code="ProductReferencesAndClassificationsComponent2TargetItemTypeRel"
 			generate="true" localized="false" autocreate="true">
 			<description>This relation links product accessory component with one or more target products for this component.</description>
@@ -55,12 +61,50 @@
 					optional="true" />
 			</targetElement>
 		</relation>
-		
+
 	</relations>
-	
+
 	<itemtypes>
 		<!-- Add your item definitions here -->
+		<itemtype code="Customer" generate="false" autocreate="false">
+			<attributes>
+				<attribute qualifier="status" type="java.lang.Boolean" >
+					<description>It indicates if account is locked or not.</description>
+					<persistence type="property"/>
+					<modifiers optional="true"/>
+					<defaultvalue>false</defaultvalue>
+				</attribute>
+				<attribute qualifier="attemptCount" type="java.lang.Integer">
+					<description> It indicates how many times user entered incorrect password successively.</description>
+					<persistence type="property" />
+					<modifiers optional="true"/>
+					<defaultvalue>0</defaultvalue>
+				</attribute>
+			</attributes>
+		</itemtype>
 
+
+		<itemtype code="Organisation" generate="true" autocreate="true">
+			<deployment table="TelcoTrailOrganisation" typecode="10234" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.Integer" >
+					<persistence type="property"/>
+					<modifiers optional="false" unique="true"/>
+				</attribute>
+				<attribute qualifier="name" type="localized:java.lang.String">
+					<description>Name</description>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="phone" type="java.lang.String">
+					<persistence type="property"/>
+					<modifiers optional="false"/>
+				</attribute>
+				<attribute qualifier="email" type="java.lang.String">
+					<persistence type="property"/>
+					<modifiers optional="false"/>
+				</attribute>
+			</attributes>
+		</itemtype>
 
 		<!-- TypeGroups are for structure of this file only -->
 		<typegroup name="Telco">
@@ -68,7 +112,7 @@
 				extends="ProductReferencesComponent" autocreate="true" generate="true"
 				jaloclass="com.epam.training.core.jalo.ProductReferencesAndClassificationsComponent">
 				<description>It represents product accessories component, that is a combo of product references and classification features.</description>
-				<attributes>	
+				<attributes>
 				</attributes>
 			</itemtype>
 			<itemtype code="ProductReferencesAndClassificationsForDevicesComponent"
@@ -84,7 +128,7 @@
 				<attributes>
 				</attributes>
 			</itemtype>
-	
+
 			<itemtype code="Accessory" extends="Product" autocreate="true"
 				generate="true" jaloclass="com.epam.training.core.jalo.Accessory">
 				<attributes>
@@ -92,10 +136,10 @@
                     <modifiers read="true" write="false" search="true" initial="true"/>
                     <persistence type="property" />
                     <defaultvalue>Boolean.valueOf(true)</defaultvalue>
-                  </attribute>   
+                  </attribute>
 				</attributes>
 			</itemtype>
-	
+
 			<itemtype code="ServicePlan" extends="SubscriptionProduct"
 				autocreate="true" generate="true"
 				jaloclass="com.epam.training.core.jalo.ServicePlan">
@@ -116,12 +160,12 @@
 					<attribute type="java.lang.String" qualifier="category">
 						<description>Category code</description>
 						<modifiers read="true" write="true" search="true" optional="false" initial="false" />
-						<persistence type="property" />			
+						<persistence type="property" />
 					</attribute>
 					<attribute type="java.lang.String" qualifier="classification">
 						<description>Classification class code</description>
 						<modifiers read="true" write="true" search="true" optional="false" initial="false" />
-						<persistence type="property" />					
+						<persistence type="property" />
 					</attribute>
 	                <attribute qualifier="annotation" type="java.lang.Class" redeclare="true">
 	                    <modifiers write="false" initial="true" optional="false"/>
@@ -130,9 +174,9 @@
 	                    </defaultvalue>
 	                </attribute>
 	            </attributes>
-	        </itemtype>	
+	        </itemtype>
 		</typegroup>
 
 	</itemtypes>
-	
+
 </items>
