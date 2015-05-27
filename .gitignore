@@ -23,6 +23,7 @@ build.xml
 *-testclasses.xml
 extensioninfo.xsd
 beans.xsd
+items.xsd
 gensrc/
 
 .pmd
