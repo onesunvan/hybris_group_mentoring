@@ -156,6 +156,7 @@
 			</itemtype>
 	        
 	        <itemtype code="Organisation" autocreate="true" generate="true">
+				<deployment table="Organisation" typecode="12345" />
 			    <attributes>
 			        <attribute qualifier="id" type="java.lang.Integer" generate="true">
 						<description>Organisation's identifier.</description>
