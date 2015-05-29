@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="hybris.de/schemas/hmc/generic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="hybris.de/schemas/hmc/generic hmc.xsd">
+    <explorertree>
+        <group name="customtelcotrailgroup">
+            <typeref type="Organisation" />
+        </group>
+    </explorertree>
+    <type name="Organisation" mode="append">
+        <organizer>
+            <search mode="replace">
+                <condition attribute="id" />
+                <condition attribute="name" />
+                <condition attribute="phone" />
+                <condition attribute="email" />
+                <condition attribute="customers" />
+            </search>
+            <result>
+                <listview mode="replace">
+                    <itemlayout>
+                        <attribute name="id" />
+                        <attribute name="name" />
+                        <attribute name="phone" />
+                        <attribute name="email" />
+                        <attribute name="customers" />
+                    </itemlayout>
+                </listview>
+            </result>
+            <editor>
+                <essentials>
+                    <listlayout>
+                        <attribute name="id" />
+                    </listlayout>
+                </essentials>
+                <tab name="tab.customtelcotrail">
+                    <section name="section.customtelcotrail">
+                        <listlayout>
+                            <attribute name="id" />
+                            <attribute name="customers" />
+                        </listlayout>
+                    </section>
+                </tab>
+            </editor>
+        </organizer>
+    </type>
+</configuration>
