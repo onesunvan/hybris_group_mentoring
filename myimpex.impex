@@ -1,0 +1,12 @@
+INSERT_UPDATE Organisation;id[unique=true];name;phone;email
+;1;NASA;093939393;nasa@nasa.com
+;2;Virgin;05059345212;virgin@gmail.com
+;3;SpaceX;06773459293;space@yahoo.com
+
+
+INSERT_UPDATE Customer;uid[unique=true];name;customerID[unique=true];organisations(id)[mode=replace]
+;0977;Vitalii Bilonozhko;9670;1,3
+;0912;Ivo Bobul;9612;2,3
+;0913;Izzi Top;9613;1,2
+;0914;Ozzy Ozborn;9614;2,3
+;0915;Lars Ulrih;9615;1,3
