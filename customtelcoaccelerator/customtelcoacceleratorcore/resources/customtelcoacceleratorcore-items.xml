@@ -56,7 +56,7 @@
 			</targetElement>
 		</relation>
 		
-		<relation code="Customer2Organisation" localized="false" autocreate="true">
+		<relation code="Customer2Organisation" localized="false" generate="true" autocreate="true">
 			<description>Many to many relation between customers and organisations.</description>
 			<deployment table="customer2organisationrel" typecode="11111"/>
 			<sourceElement qualifier="customers" type="Customer" cardinality="many" />

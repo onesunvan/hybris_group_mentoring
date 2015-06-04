@@ -1,0 +1,18 @@
+#
+# Import Customers
+#
+INSERT_UPDATE Customer;uid[unique=true];name
+;customer1;customer1
+;customer2;customer2
+;customer3;customer3
+;customer4;customer4
+;customer5;customer5
+;customer6;customer6
+
+#
+# Import Organisations
+# 
+INSERT_UPDATE Organisation;id[unique=true];name[lang=en];phone;email;customers(uid)[mode=replace]
+;2;Imported Org1;380961111111;importedOrg1@mail.com;customer1,customer2
+;3;Imported Org2;380962222222;importedOrg2@mail.com;customer3,customer4
+;4;Imported Org3;380963333333;importedOrg3@mail.com;customer5,customer6
