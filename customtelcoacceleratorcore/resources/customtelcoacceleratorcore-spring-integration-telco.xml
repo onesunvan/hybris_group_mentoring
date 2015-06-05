@@ -46,4 +46,48 @@
 		<property name="net" value="false" />
 		<property name="storeBaseDirectory" ref="baseDirectoryTelco" />
 	</bean>
+
+    <bean id="batchOrganizationConverterMapping" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping">
+        <property name="mapping" value="organisation"/>
+        <property name="converter" ref="batchOrganizationConverter"/>
+    </bean>
+
+    <bean id="batchCustomerConverterMapping"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping">
+        <property name="mapping" value="customer"/>
+        <property name="converter" ref="batchExtendedCustomerConverter"/>
+    </bean>
+
+
+    <bean id="batchOrganizationConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+        <property name="header">
+            <value>
+                INSERT_UPDATE Organisation;id[unique=true];name;phone;email
+            </value>
+        </property>
+        <property name="impexRow">
+            <value>;{+0};{1};{2};{3}</value>
+        </property>
+        <property name="type" value="Organisation" />
+    </bean>
+
+    <bean id="batchExtendedCustomerConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+        <property name="header">
+            <value>
+                $passwordEncoding=md5
+                $defaultTitle=mr
+                $defaultPassword=1234
+                $setName=name[cellDecorator=de.hybris.platform.acceleratorservices.dataimport.batch.decorator.CustomerNameDecorator]
+                $setPassword=@password[translator=de.hybris.platform.acceleratorservices.dataimport.batch.converter.RandomPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+                $defaultAttemptCount=0
+                $defaultStatus=false
+                INSERT_UPDATE Customer;uid[unique=true];$setName;title(code);$setPassword;attemptCount[default=$defaultAttemptCount];status[default=$defaultStatus];organisations(id)
+            </value>
+        </property>
+        <property name="impexRow">
+            <value>;{+0};{1};{2};{3};{4};{5};{6}</value>
+        </property>
+        <property name="type" value="Customer" />
+    </bean>
+
 </beans>
