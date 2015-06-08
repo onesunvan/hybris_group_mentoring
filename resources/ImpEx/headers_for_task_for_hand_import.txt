@@ -1,0 +1,14 @@
+# ---- Extension: customtelcoacceleratorcore ---- Type: Organisation ----
+"#% impex.setTargetFile( ""Organisation.csv"" );"
+insert_update Organisation;pk;creationtime[forceWrite=true,dateformat=dd.MM.yyyy hh:mm:ss];email[allownull=true];id[unique=true,allownull=true];modifiedtime[dateformat=dd.MM.yyyy hh:mm:ss];name[allownull=true,lang=de];name[allownull=true,lang=en];name[allownull=true,lang=es];name[allownull=true,lang=es_CO];name[allownull=true,lang=fr];name[allownull=true,lang=hi];name[allownull=true,lang=id];name[allownull=true,lang=it];name[allownull=true,lang=ja];name[allownull=true,lang=ko];name[allownull=true,lang=pt];name[allownull=true,lang=ru];name[allownull=true,lang=zh];name[allownull=true,lang=zh_TW];owner(pk)[allownull=true];phone[allownull=true]
+"#% impex.exportItems( ""Organisation"" , false );"
+
+# ---- Extension: core ---- Type: Customer ----
+"#% impex.setTargetFile( ""Customer.csv"" );"
+insert_update Customer;pk;@password[translator=de.hybris.platform.impex.jalo.translators.UserPasswordTranslator];CN;DN;Europe1PriceFactory_UDG(code,itemtype(code));Europe1PriceFactory_UPG(code,itemtype(code));Europe1PriceFactory_UTG(code,itemtype(code));addresses(pk);attemptCount[allownull=true];authorizedToUnlockPages[allownull=true];backOfficeLoginDisabled;carts(code);creationtime[forceWrite=true,dateformat=dd.MM.yyyy hh:mm:ss];customerID;defaultPaymentAddress(pk);defaultPaymentInfo(pk);defaultShipmentAddress(pk);description;domain;encodedPassword;europe1Discounts(pk);hmcLoginDisabled;lastLogin[dateformat=dd.MM.yyyy hh:mm:ss];ldapaccount[allownull=true];ldaplogin;ldapsearchbase;loginDisabled[allownull=true];modifiedtime[dateformat=dd.MM.yyyy hh:mm:ss];name;orders(code,versionID);originalUid;owner(pk)[allownull=true];passwordAnswer;passwordEncoding;passwordQuestion;paymentInfos(pk);previewCatalogVersions(catalog(id),version);profilePicture(catalogVersion(catalog(id),version),code);sessionCurrency(isocode);sessionLanguage(isocode);status[allownull=true];title(code);token;type(code,itemtype(code));uid[unique=true,allownull=true];userprofile(pk)
+"#% impex.exportItems( ""Customer"" , false );"
+
+# ---- Extension: customtelcoacceleratorcore ---- Type: Customer2Organisation ----
+"#% impex.setTargetFile( ""Customer2Organisation.csv"" );"
+insert_update Customer2Organisation;pk;creationtime[forceWrite=true,dateformat=dd.MM.yyyy hh:mm:ss];language(isocode)[unique=true];modifiedtime[dateformat=dd.MM.yyyy hh:mm:ss];owner(pk);qualifier;reverseSequenceNumber;sequenceNumber;source(uid)[unique=true,allownull=true];target(id)[unique=true,allownull=true]
+"#% impex.exportItems( ""Customer2Organisation"" , false );"

@@ -79,3 +79,9 @@ hs_err_pid*
 /telcotrail
 /customtelcoacceleratorhmc/hmc/classes
 /customtelcoacceleratorhmc/hmc/bin
+/customtelcoaccelerator/customtelcoacceleratorcockpits/lib
+/customtelcoaccelerator/customtelcoacceleratorcore/lib
+/customtelcoaccelerator/customtelcoacceleratorfacades/lib
+/customtelcoaccelerator/customtelcoacceleratorinitialdata/lib
+/customtelcoaccelerator/customtelcoacceleratorstorefront/lib
+/customtelcoacceleratorhmc/lib
