@@ -60,10 +60,51 @@
             </targetElement>
         </relation>
 
+        <relation code="CustomerOrganizationRel" localized="false" autocreate="true">
+            <deployment table="customerOrganization" typecode="12346"/>
+            <sourceElement qualifier="customer" type="Customer" cardinality="many"/>
+            <targetElement qualifier="organization" type="Organization" cardinality="many"/>
+        </relation>
+
     </relations>
 
     <itemtypes>
         <!-- Add your item definitions here -->
+
+        <itemtype code="Customer" autocreate="false">
+            <attributes>
+                <attribute qualifier="status" type="java.lang.Boolean">
+                    <description>Locked account or not</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="attemptCount" type="java.lang.Integer">
+                    <description>It indicates how many times user entered incorrect password successively.</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="Organization" autocreate="true" generate="true">
+            <deployment table="Organization" typecode="12345"/>
+            <attributes>
+                <attribute qualifier="id" type="java.lang.Integer">
+                    <description>ID</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="name" type="java.lang.String">
+                    <description>name</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="phone" type="java.lang.Number">
+                    <description>phone</description>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="email" type="java.lang.String">
+                    <description>email</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
 
         <!-- TypeGroups are for structure of this file only -->
         <typegroup name="Telco">
@@ -140,7 +181,6 @@
                 </attributes>
             </itemtype>
         </typegroup>
-
     </itemtypes>
 
 </items>
