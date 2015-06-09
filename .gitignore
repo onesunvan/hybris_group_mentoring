@@ -15,11 +15,6 @@
 hs_err_pid*
 
 
-# Package Files #
-*.war
-*.ear
-*.class
-
 # Hybris
 gensrc/
 platformhome.properties
