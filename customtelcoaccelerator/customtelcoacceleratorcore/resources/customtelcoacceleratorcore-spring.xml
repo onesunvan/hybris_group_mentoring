@@ -229,5 +229,6 @@
 		<property name="constraintDao" ref="constraintDao" />
 		<lookup-method name="lookupViolation" bean="hybrisConstraintViolation"/>
 	</bean>
-
+	
+	<bean id="SendOrganisationInfoJob" class="com.epam.training.core.jobs.SendOrganisationInfoJob" autowire="byName" />
 </beans>
