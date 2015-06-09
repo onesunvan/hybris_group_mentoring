@@ -26,7 +26,7 @@
 
       <!--<webmodule jspcompile="false" webroot="/customtelcotrailhmc"/>-->
 
-       <hmcmodule extensionclassname="de.hybris.platform.cuppytrail.hmc.CuppytrailHMCExtension"/>
+       <hmcmodule extensionclassname="com.epam.training.hmc.TelcoTrailHMCExtension"/>
 
    </extension>
       
