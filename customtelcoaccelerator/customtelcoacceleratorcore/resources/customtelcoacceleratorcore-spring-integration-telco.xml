@@ -16,6 +16,7 @@
        xmlns:int="http://www.springframework.org/schema/integration"
        xmlns:file="http://www.springframework.org/schema/integration/file"
        xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/integration
@@ -45,5 +46,58 @@
 		<property name="catalog" value="telcoProductCatalog" />
 		<property name="net" value="false" />
 		<property name="storeBaseDirectory" ref="baseDirectoryTelco" />
+	</bean>
+	
+	<!--alias name="batchTelcoOrganisationConverterMapping" alias="batchOrganisationConverterMapping"/>
+	<bean id="batchTelcoOrganisationConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="organisation" 
+		  p:converter-ref="batchTelcoOrganisationConverter"/>
+	
+	<alias name="batchTelcoCustomerConverterMapping" alias="batchCustomerConverterMapping"/>	
+	<bean id="batchTelcoCustomerConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="customer" 
+		  p:converter-ref="batchTelcoCustomerConverter"/-->	  
+	
+	<bean id="batchOrganisationConverterMapping" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping">
+        <property name="mapping" value="organisation"/>
+        <property name="converter" ref="batchTelcoOrganisationConverter"/>
+    </bean>
+
+    <bean id="batchCustomerConverterMapping"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping">
+        <property name="mapping" value="customer"/>
+        <property name="converter" ref="batchTelcoCustomerConverter"/>
+    </bean>
+	
+	<bean id="batchTelcoOrganisationConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE Organisation;id[unique=true];name;phone;email
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3}</value>
+		</property>
+		<property name="type" value="Organisation" />
+	</bean>
+	
+	<bean id="batchTelcoCustomerConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				$passwordEncoding=md5
+				$defaultPassword=password
+				$defaultAttemptCount=0
+				$defaultStatus=false
+				$setName=name[cellDecorator=de.hybris.platform.acceleratorservices.dataimport.batch.decorator.CustomerNameDecorator]
+				$setPassword=@password[translator=de.hybris.platform.acceleratorservices.dataimport.batch.converter.RandomPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+				INSERT_UPDATE Customer;uid[unique=true];name;$setPassword;attemptCount[default=$defaultAttemptCount];status[default=$defaultStatus];organisations(id)[mode=replace]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{4};{5}</value>
+		</property>
+		<property name="type" value="Customer" />
 	</bean>
 </beans>
