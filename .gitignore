@@ -4,9 +4,33 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+/customtelcoaccelerator/customtelcoacceleratorcore/extensioninfo.xsd
+/customtelcoaccelerator/customtelcoacceleratorcore/eclipsebin
+/customtelcoaccelerator/customtelcoacceleratorcore/classes
+/customtelcoaccelerator/customtelcoacceleratorcore/gensrc
+/customtelcoaccelerator/customtelcoacceleratorcore/build.xml
+/customtelcoaccelerator/customtelcoacceleratorcore/resources/beans.xsd
+/customtelcoaccelerator/customtelcoacceleratorcore/resources/items.xsd
+/customtelcoaccelerator/customtelcoacceleratorcore/resources/smartlingcore/smartlingcore-webtestclasses.xml
+/customtelcoaccelerator/customtelcoacceleratorcore/resources/smartlingcore/smartlingcore-testclasses.xml
+/customtelcoaccelerator/customtelcoacceleratorcore/fileAbsolutePath
+
+/customtelcoaccelerator/customtelcoacceleratorhmc/build.xml
+/customtelcoaccelerator/customtelcoacceleratorhmc/eclipsebin
+/customtelcoaccelerator/customtelcoacceleratorhmc/classes
+/customtelcoaccelerator/customtelcoacceleratorhmc/extensioninfo.xsd
+/customtelcoaccelerator/customtelcoacceleratorhmc/resources/beans.xsd
+/customtelcoaccelerator/customtelcoacceleratorhmc/resources/items.xsd
+/customtelcoaccelerator/customtelcoacceleratorhmc/hmc/bin/smartlinghmchmc.jar
+/customtelcoaccelerator/customtelcoacceleratorhmc/resources/smartlinghmc/smartlinghmc-testclasses.xml
+/customtelcoaccelerator/customtelcoacceleratorhmc/resources/smartlinghmc/smartlinghmc-webtestclasses.xml
+/customtelcoaccelerator/customtelcoacceleratorhmc/hmc/classes
+/customtelcoaccelerator/customtelcoacceleratorhmc/hmc/bin
+/customtelcoaccelerator/customtelcoacceleratorhmc/hmc/resources/hmc.xsd
+/customtelcoaccelerator/customtelcoacceleratorhmc/hmc/testclasses
