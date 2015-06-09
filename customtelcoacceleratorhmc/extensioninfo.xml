@@ -21,9 +21,9 @@
         <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
         <!-- <requires-extension name="cms"/> -->
 
-
         <coremodule generated="true" manager="com.epam.training.jalo.CustomtelcoacceleratorhmcManager"
                     packageroot="com.epam.training"/>
+        <hmcmodule extensionclassname="com.epam.training.hmc.CustomTelcoAcceleratorHMCExtention"/>
 
     </extension>
 

@@ -95,7 +95,7 @@
                     <description>name</description>
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="phone" type="java.lang.Number">
+                <attribute qualifier="phone" type="java.lang.String">
                     <description>phone</description>
                     <persistence type="property"/>
                 </attribute>
