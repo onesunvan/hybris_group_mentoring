@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Jun 9, 2015 5:07:41 PM                      ---
+ * --- Generated at Jun 9, 2015 6:19:35 PM                      ---
  * ----------------------------------------------------------------
  */
 package com.epam.training.core.constants;
@@ -19,6 +19,7 @@ public class GeneratedCustomtelcoacceleratorCoreConstants
 		public static final String ACCESSORY = "Accessory".intern();
 		public static final String CLASSIFICATIONNOTBLANKCONSTRAINT = "ClassificationNotBlankConstraint".intern();
 		public static final String DEVICE = "Device".intern();
+		public static final String ORGANISATION = "Organisation".intern();
 		public static final String PRODUCTREFERENCESANDCLASSIFICATIONSCOMPONENT = "ProductReferencesAndClassificationsComponent".intern();
 		public static final String PRODUCTREFERENCESANDCLASSIFICATIONSFORDEVICESCOMPONENT = "ProductReferencesAndClassificationsForDevicesComponent".intern();
 		public static final String SERVICEADDON = "ServiceAddOn".intern();
@@ -34,6 +35,12 @@ public class GeneratedCustomtelcoacceleratorCoreConstants
 		{
 			public static final String PRODUCTREFERENCESANDCLASSIFICATIONSCOMPONENTS = "productReferencesAndClassificationsComponents".intern();
 		}
+		public static class Customer
+		{
+			public static final String ATTEMPTCOUNT = "attemptCount".intern();
+			public static final String ORGANISATIONS = "organisations".intern();
+			public static final String STATUS = "status".intern();
+		}
 	}
 	public static class Enumerations
 	{
@@ -44,6 +51,7 @@ public class GeneratedCustomtelcoacceleratorCoreConstants
 	}
 	public static class Relations
 	{
+		public static final String CUSTOMERORGANISATION = "customerorganisation".intern();
 		public static final String PRODUCTACCESSORYCOMPONENT2CLASSATTRIBUTEASSIGNREL = "ProductAccessoryComponent2ClassAttributeAssignRel".intern();
 		public static final String PRODUCTREFERENCESANDCLASSIFICATIONSCOMPONENT2TARGETITEMTYPEREL = "ProductReferencesAndClassificationsComponent2TargetItemTypeRel".intern();
 	}
