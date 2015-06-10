@@ -20,6 +20,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config />
+	<context:component-scan base-package="com.epam.training.core"/>
 
 	<!-- Spring Integration -->
 	<import resource="customtelcoacceleratorcore-spring-integration-telco.xml"/>
@@ -229,5 +230,12 @@
 		<property name="constraintDao" ref="constraintDao" />
 		<lookup-method name="lookupViolation" bean="hybrisConstraintViolation"/>
 	</bean>
+
+
+	<alias name="defaultOrganisationService" alias="organisationService"/>
+	<bean id="defaultOrganisationService" class="com.epam.training.core.services.impl.DefaultOrganisationService">
+		<property name="organisationDAO" ref="organisationDAO"/>
+	</bean>
+
 
 </beans>
