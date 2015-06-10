@@ -19,6 +19,8 @@
 		http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<context:component-scan base-package="com.epam.training.core"/>	
+		
     <context:annotation-config />
 
 	<!-- Spring Integration -->
@@ -229,5 +231,19 @@
 		<property name="constraintDao" ref="constraintDao" />
 		<lookup-method name="lookupViolation" bean="hybrisConstraintViolation"/>
 	</bean>
+	
+	<alias name="flexibleQueryOrganisationDao" alias="organisationDao"/>
+	<bean id="genericQueryOrganisationDao" class="com.epam.training.core.daos.impl.GenericQueryOrganisationDao" autowire="byType"/>
+	<bean id="flexibleQueryOrganisationDao" class="com.epam.training.core.daos.impl.FlexibleQueryOrganisationDao" autowire="byType"/>
+	
+	<alias name="defaultOrganisationService" alias="organisationService"/>
+    <bean id="defaultOrganisationService" class="com.epam.training.core.services.impl.DefaultOrganisationService">
+        <property name="organisationDao" ref="organisationDao"/>
+    </bean>
+    
+    <alias name="defaultMailService" alias="mailService"/>
+    <bean id="defaultMailService" class="com.epam.training.core.services.impl.DefaultMailService" autowire="byType"/>
+	
+	<bean id="sendOrganisationCustomersNotificationMailJob" class="com.epam.training.core.jobs.SendOrganisationCustomersNotificationMailJob" autowire="byName"/>
 
 </beans>
