@@ -26,8 +26,7 @@ public class CustomTelcoAcceleratorHMCExtension extends HMCExtension
 	private static final Logger LOG = Logger.getLogger(CustomTelcoAcceleratorHMCExtension.class.getName());
 
 	/** Path to the resource bundles. */
-	public final static String RESOURCE_PATH = "de.hybris.platform.cuppytrail.hmc.locales";
-
+	public final static String RESOURCE_PATH = "com.epam.training.customtelcoaccelerator.hmc.locales";
 
 	/**
 	 * @see HMCExtension#getTreeNodeChips(de.hybris.platform.hmc.webchips.DisplayState,
