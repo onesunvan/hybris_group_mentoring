@@ -230,5 +230,16 @@
 		<lookup-method name="lookupViolation" bean="hybrisConstraintViolation"/>
 	</bean>
 	
-	<bean id="SendOrganisationInfoJob" class="com.epam.training.core.jobs.SendOrganisationInfoJob" autowire="byName" />
+	<bean id="SendOrganisationInfoJob" class="com.epam.training.core.jobs.SendOrganisationInfoJob" autowire="byName" >
+		<property name="ofDao" ref="defaultOrganisationFeaturesDao" />
+		
+		<property name="emailToAddress" value="#{configurationService.configuration.getProperty('send.organisation.info.job.email.to.address')}" />
+		<property name="emailFromAddress" value="#{configurationService.configuration.getProperty('send.organisation.info.job.email.from.address')}" />
+		<property name="emailDisplayName" value="#{configurationService.configuration.getProperty('send.organisation.info.job.email.display.name')}" />
+		<property name="emailSubject" value="#{configurationService.configuration.getProperty('send.organisation.info.job.email.subject')}" />
+	</bean>
+
+	<bean id="defaultOrganisationFeaturesDao" name="defaultOrganisationFeaturesDao, organisationsFeaturesDao" 
+		class="com.epam.training.core.daos.impl.DefaultOrganisationFeaturesDao" parent="abstractItemDao" />
+
 </beans>

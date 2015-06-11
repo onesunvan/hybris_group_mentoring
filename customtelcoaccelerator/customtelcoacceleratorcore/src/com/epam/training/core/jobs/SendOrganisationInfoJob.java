@@ -25,7 +25,10 @@ import de.hybris.platform.servicelayer.cronjob.PerformResult;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.log4j.Logger;
+
+import com.epam.training.core.daos.OrganisationsFeaturesDao;
 
 
 public class SendOrganisationInfoJob extends AbstractJobPerformable<CronJobModel>
@@ -33,33 +36,70 @@ public class SendOrganisationInfoJob extends AbstractJobPerformable<CronJobModel
 	private static final Logger LOG = Logger.getLogger(SendOrganisationInfoJob.class);
 
 	private EmailService emailService;
-
+	private OrganisationsFeaturesDao ofDao;
+	
+	private String emailToAddress;
+	private String emailFromAddress;
+	private String emailDisplayName;
+	private String emailSubject;
+	
 	@Override
 	public PerformResult perform(final CronJobModel cronJob)
 	{
-		LOG.info("Sending organisation info email");
-		LOG.info("emailService: " + emailService);
+		ArrayList<String> organisationsAndCustomers = ofDao.getUsersListByOrganisation();
+		
+		StringBuilder emailBody = new StringBuilder();
+		
+		for (String string : organisationsAndCustomers)
+		{
+			LOG.info("Record: " + string);
+			emailBody.
+				append("<p>").
+				append(string).
+				append("<hr></p>");
+		}
 
-		final EmailMessageModel emailMessageModel = new EmailMessageModel();
-
-		final List<EmailAddressModel> addressesList = new ArrayList<EmailAddressModel>();
-
-		final EmailAddressModel emailAddressModel = new EmailAddressModel();
-
-		emailAddressModel.setEmailAddress("Serhii_Kashyn@epam.com");
-		emailAddressModel.setDisplayName("Sergey Kashyn");
-
-		addressesList.add(emailAddressModel);
-
-		emailMessageModel.setToAddresses(addressesList);
-		emailMessageModel.setFromAddress(emailAddressModel);
-		emailMessageModel.setReplyToAddress("Serhii_Kashyn@epam.com");
-		emailMessageModel.setSubject("Some subject");
-		emailMessageModel.setBody("Some email body");
-
+		List<EmailAddressModel> addressesList = new ArrayList<EmailAddressModel>();
+ 
+		EmailAddressModel emailAddressToModel = emailService.getOrCreateEmailAddressForEmail(emailToAddress, emailDisplayName);
+		addressesList.add(emailAddressToModel);
+		
+		EmailAddressModel emailAddressFromModel = emailService.getOrCreateEmailAddressForEmail(emailFromAddress, emailDisplayName);
+		
+		EmailMessageModel emailMessageModel = emailService.createEmailMessage(addressesList, null, null, emailAddressFromModel, null, emailSubject, emailBody.toString(), null);
 		emailService.send(emailMessageModel);
-
+		
 		return new PerformResult(CronJobResult.SUCCESS, CronJobStatus.FINISHED);
+	}
+
+	public String getEmailToAddress()
+	{
+		return emailToAddress;
+	}
+
+	public void setEmailToAddress(String emailToAddress)
+	{
+		this.emailToAddress = emailToAddress;
+	}
+
+	public String getEmailFromAddress()
+	{
+		return emailFromAddress;
+	}
+
+	public void setEmailFromAddress(String emailFromAddress)
+	{
+		this.emailFromAddress = emailFromAddress;
+	}
+
+	public OrganisationsFeaturesDao getOfDao()
+	{
+		return ofDao;
+	}
+
+	public void setOfDao(final OrganisationsFeaturesDao ofDao)
+	{
+		this.ofDao = ofDao;
 	}
 
 	public void setEmailService(final EmailService emailService)
@@ -72,4 +112,24 @@ public class SendOrganisationInfoJob extends AbstractJobPerformable<CronJobModel
 		return emailService;
 	}
 
+	public String getEmailSubject()
+	{
+		return emailSubject;
+	}
+
+	public void setEmailSubject(String emailSubject)
+	{
+		this.emailSubject = emailSubject;
+	}
+
+	public String getEmailDisplayName()
+	{
+		return emailDisplayName;
+	}
+
+	public void setEmailDisplayName(String emailDisplayName)
+	{
+		this.emailDisplayName = emailDisplayName;
+	}	
+	
 }
