@@ -60,8 +60,8 @@
             </targetElement>
         </relation>
 
-        <relation code="CustomerOrganizationRel" localized="false" autocreate="true">
-            <deployment table="customerOrganization" typecode="12346"/>
+        <relation code="Customer2Organization" localized="false" autocreate="true" generate="true">
+            <deployment table="customerOrganizationRel" typecode="12346"/>
             <sourceElement qualifier="customer" type="Customer" cardinality="many"/>
             <targetElement qualifier="organization" type="Organization" cardinality="many"/>
         </relation>
@@ -87,7 +87,7 @@
         <itemtype code="Organization" autocreate="true" generate="true">
             <deployment table="Organization" typecode="12345"/>
             <attributes>
-                <attribute qualifier="id" type="java.lang.Integer">
+                <attribute qualifier="id" autocreate="true" type="java.lang.Integer">
                     <description>ID</description>
                     <persistence type="property"/>
                 </attribute>

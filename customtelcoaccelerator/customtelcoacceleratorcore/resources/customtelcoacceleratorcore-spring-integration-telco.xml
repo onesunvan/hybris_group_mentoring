@@ -16,6 +16,7 @@
        xmlns:int="http://www.springframework.org/schema/integration"
        xmlns:file="http://www.springframework.org/schema/integration/file"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/integration
@@ -47,4 +48,49 @@
         <property name="net" value="false"/>
         <property name="storeBaseDirectory" ref="baseDirectoryTelco"/>
     </bean>
+
+    <bean id="batchOrganizationConverter"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+        <property name="header">
+            <value>
+                INSERT_UPDATE Organization;id[unique=true];name;phone;email
+            </value>
+        </property>
+        <property name="impexRow">
+            <value>;{+0};{1};{2};{3}</value>
+        </property>
+        <property name="type" value="Organization"/>
+    </bean>
+
+    <bean id="batchCustomerConverter"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+        <property name="header">
+            <value>#{defaultImpexProductHeader}
+                # Insert Customer
+                $passwordEncoding=md5
+                $defaultPassword=1234
+                $defaultAttemptCount=attemptCount[default=0]
+                $status=status[default=false]
+                $setName=name[cellDecorator=de.hybris.platform.acceleratorservices.dataimport.batch.decorator.CustomerNameDecorator]
+                $setPassword=@password[translator=de.hybris.platform.acceleratorservices.dataimport.batch.converter.RandomPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+                INSERT_UPDATE
+                Customer;uid[unique=true];$setName;$setPassword;$status;$defaultAttemptCount;organization(id)
+            </value>
+        </property>
+        <property name="impexRow">
+            <value>;{+0};{1};{2};{3};{4};{5}</value>
+        </property>
+        <property name="type" value="Customer"/>
+    </bean>
+
+    <bean id="batchInternalCustomerConverterMapping"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+          p:mapping="customer"
+          p:converter-ref="batchCustomerConverter"/>
+
+    <bean id="batchInternalOrganizationConverterMapping"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+          p:mapping="organization"
+          p:converter-ref="batchOrganizationConverter"/>
+
 </beans>

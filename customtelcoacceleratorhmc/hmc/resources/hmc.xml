@@ -16,7 +16,7 @@
                 <tab name="tab.organisations" id="tab_customer_orgs" mode="append">
                     <section name="section.organisations">
                         <listlayout>
-                            <attribute name="organisations">
+                            <attribute name="organisations" mode="append">
                                 <referencecollectioneditor showsearcheditor="true">
                                     <itemlayout>
                                         <attribute name="id"/>
