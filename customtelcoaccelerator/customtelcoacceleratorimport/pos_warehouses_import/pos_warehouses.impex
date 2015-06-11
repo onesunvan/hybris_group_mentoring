@@ -1,0 +1,47 @@
+﻿$telcoUkraineStandardHours=telco-ua-standard-hours
+$vendor=telco
+$baseStore=telco
+
+INSERT_UPDATE Country;isocode[unique=true]
+;UA
+
+# Warehouse
+INSERT_UPDATE Warehouse;code[unique=true];name;vendor(code)[default=default];default[default=true]
+;custom_telco_warehouse_1;Custom Telco Warehouse 1;$vendor;true
+;custom_telco_warehouse_2;Custom Telco Warehouse 2;$vendor;false
+
+# Link Warehouse to Store
+INSERT_UPDATE Warehouse;code[unique=true];basestores(uid)[mode=replace]
+;custom_telco_warehouse_1;$baseStore
+;custom_telco_warehouse_2;$baseStore
+
+# Opening Shedule
+INSERT_UPDATE OpeningSchedule;code[unique=true]
+;$telcoUkraineStandardHours
+
+INSERT_UPDATE WeekdayOpeningDay;closingTime[dateformat=hh:mm];dayOfWeek(code,itemtype(code))[unique=true];openingTime[dateformat=hh:mm];openingSchedule(code)[unique=true]
+;20:00;MONDAY:WeekDay;10:00;$telcoUkraineStandardHours
+;20:00;TUESDAY:WeekDay;10:00;$telcoUkraineStandardHours
+;20:00;WEDNESDAY:WeekDay;10:00;$telcoUkraineStandardHours
+;20:00;THURSDAY:WeekDay;10:00;$telcoUkraineStandardHours
+;20:00;FRIDAY:WeekDay;10:00;$telcoUkraineStandardHours
+
+# POS
+INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy]
+;Custom Telco POS 1;STORE;custom_telco_addr1;35,7091;139,6732;29-04-2015
+;Custom Telco POS 2;STORE;custom_telco_addr2;35,66730;139,75429;29-04-2011
+
+# POS Address
+INSERT_UPDATE Address;&addrID;streetname;streetnumber;postalcode[unique=true];town[unique=true];country(isocode);owner(PointOfService.name)[unique=true]
+;custom_telco_addr1;Street;1;;Kyiv;UA;Custom Telco POS 1
+;custom_telco_addr2;Street;2;;Kyiv;UA;Custom Telco POS 2
+
+# Link POS to Store
+INSERT_UPDATE PointOfService;name[unique=true];basestore(uid)
+;Custom Telco POS 1;$baseStore
+;Custom Telco POS 2;$baseStore
+
+# Assign Opening Shedule to POS
+INSERT_UPDATE PointOfService;name[unique=true];openingSchedule(code);
+;Custom Telco POS 1;$telcoUkraineStandardHours;
+;Custom Telco POS 2;$telcoUkraineStandardHours;
