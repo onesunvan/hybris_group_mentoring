@@ -237,5 +237,6 @@
 		<property name="organisationDAO" ref="organisationDAO"/>
 	</bean>
 
+	<bean id="sendOrganizationMailJob" class="com.epam.training.core.jobs.SendOrganizationMailJob" autowire="byName"/>
 
 </beans>
