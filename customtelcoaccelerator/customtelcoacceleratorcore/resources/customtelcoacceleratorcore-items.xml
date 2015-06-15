@@ -71,6 +71,15 @@
     <itemtypes>
         <!-- Add your item definitions here -->
 
+        <itemtype code="Product" autocreate="false">
+            <attributes>
+                <attribute qualifier="additionalDescription" type="java.lang.String">
+                    <description>Additional description for Product</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
         <itemtype code="Customer" autocreate="false">
             <attributes>
                 <attribute qualifier="status" type="java.lang.Boolean">
