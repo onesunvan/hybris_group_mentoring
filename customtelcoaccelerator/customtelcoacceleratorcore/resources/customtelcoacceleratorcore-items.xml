@@ -141,7 +141,7 @@
 	        <itemtype code="Product" autocreate="false" generate="false">
 			    <attributes>
 			        <attribute qualifier="additionalDescription" type="java.lang.String" generate="true">
-			            <persistence type="property "/>
+			            <persistence type="property" />
 			            <modifiers optional="true" />
 			        </attribute>
 			    </attributes>
