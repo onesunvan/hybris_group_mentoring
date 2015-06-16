@@ -14,6 +14,7 @@
 <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
 
 	<collectiontypes>
+		<collectiontype code="BundledProducts" elementtype="Product" autocreate="true" generate="true"/>
 	</collectiontypes>
 
 	<enumtypes>
@@ -143,6 +144,17 @@
 			        <attribute qualifier="additionalDescription" type="java.lang.String" generate="true">
 			            <persistence type="property" />
 			            <modifiers optional="true" />
+			        </attribute>
+			    </attributes>
+			</itemtype>
+			
+			<itemtype code="ProductBundle" extends="Product" autocreate="true" generate="true">
+				<deployment table="ProductBundles" typecode="23456" />
+			    <attributes>
+			        <attribute qualifier="products" type="BundledProducts" generate="true">
+			        	<description>Collection of bundled products</description>
+			        	<persistence type="property" />
+			        	<modifiers read="true" write="true" search="true" optional="false"/>			            
 			        </attribute>
 			    </attributes>
 			</itemtype>
