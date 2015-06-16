@@ -138,6 +138,14 @@
 	            </attributes>
 	        </itemtype>
 	        
+	        <itemtype code="Product" autocreate="false" generate="false">
+			    <attributes>
+			        <attribute qualifier="additionalDescription" type="java.lang.String" generate="true">
+			            <persistence type="property"/>
+			        </attribute>
+			    </attributes>
+			</itemtype>
+	        
 	        <itemtype code="Customer" autocreate="false" generate="false">
 			    <attributes>
 			        <attribute qualifier="status" type="java.lang.Boolean" generate="true">
