@@ -67,6 +67,16 @@
 	<itemtypes>
 		<!-- Add your item definitions here -->
 
+		<itemtype code="ProductBundle" autocreate="true" generate="true" extends="Product">
+			<deployment table="productbundles" typecode="15010" />
+			<attributes>
+				<attribute qualifier="bundledProducts" type="ProductCollection" generate="true">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
 		<itemtype code="Product" autocreate="false" generate="false">
 			<attributes>
 				<attribute qualifier="additionalDescription" type="java.lang.String" generate="true">
